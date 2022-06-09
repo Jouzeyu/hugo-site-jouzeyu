@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Laravel解析-入口文件 | 羡鱼戏渊</title>
+<meta name="keywords" content="Laravel">
+<meta name="description" content="所谓成长，不一定得到了什么，但肯定失去了什么……">
+<meta name="author" content="Jouzeyu">
+<link rel="canonical" href="https://jouzeyu.com/posts/laravel-parsing-entry-file/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d7fb4cbf980fe688a21621b06a795933c4e6bb2d4070ec940667af1715d84af2.css" integrity="sha256-1/tMv5gP5oiiFiGwanlZM8Tmuy1AcOyUBmevFxXYSvI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://jouzeyu.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://jouzeyu.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://jouzeyu.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://jouzeyu.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://jouzeyu.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Laravel解析-入口文件" />
+<meta property="og:description" content="所谓成长，不一定得到了什么，但肯定失去了什么……" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jouzeyu.com/posts/laravel-parsing-entry-file/" /><meta property="og:image" content="https://jouzeyu.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-29T19:41:21&#43;08:00" />
+<meta property="article:modified_time" content="2022-03-29T19:41:21&#43;08:00" /><meta property="og:site_name" content="羡鱼戏渊" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jouzeyu.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"/>
+
+<meta name="twitter:title" content="Laravel解析-入口文件"/>
+<meta name="twitter:description" content="所谓成长，不一定得到了什么，但肯定失去了什么……"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://jouzeyu.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Laravel解析-入口文件",
+      "item": "https://jouzeyu.com/posts/laravel-parsing-entry-file/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Laravel解析-入口文件",
+  "name": "Laravel解析-入口文件",
+  "description": "所谓成长，不一定得到了什么，但肯定失去了什么……",
+  "keywords": [
+    "Laravel"
+  ],
+  "articleBody": " 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 \u003c?php use Illuminate\\Contracts\\Http\\Kernel; use Illuminate\\Http\\Request; define('LARAVEL_START', microtime(true)); /* |-------------------------------------------------------------------------- | Check If The Application Is Under Maintenance |-------------------------------------------------------------------------- | | If the application is in maintenance / demo mode via the \"down\" command | we will load this file so that any pre-rendered content can be shown | instead of starting the framework, which could cause an exception. | */ if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) { require $maintenance; } /* |-------------------------------------------------------------------------- | Register The Auto Loader |-------------------------------------------------------------------------- | | Composer provides a convenient, automatically generated class loader for | this application. We just need to utilize it! We'll simply require it | into the script here so we don't need to manually load our classes. | */ require __DIR__.'/../vendor/autoload.php'; /* |-------------------------------------------------------------------------- | Run The Application |-------------------------------------------------------------------------- | | Once we have the application, we can handle the incoming request using | the application's HTTP kernel. Then, we will send the response back | to this client's browser, allowing them to enjoy our application. | */ $app = require_once __DIR__.'/../bootstrap/app.php'; $kernel = $app-\u003emake(Kernel::class); $response = $kernel-\u003ehandle( $request = Request::capture() )-\u003esend(); $kernel-\u003eterminate($request, $response); 整体逻辑 众所周知，代码是从上而下执行的，我们先大体了解下 laravel 的入口文件都做了什么事情，作者也是第一次分析源码，如有不足的地方敬请谅解。\n首先定义了一个 LARAVEL_START 的常量，值是浮点类型的当前 Unix 时间戳的微秒数-\u003e接着检查应用程序是否在维护，也就是检查 storage/framework/maintenance.php 这个路径的文件是否存在-\u003e接着加载 autoload、引入 bootstrap/app.php 直到跑起来；\n看到这里我们会有很多疑问，最起码我有很多疑问，比如一开始定义的常量有什么用？检查是否维护为什么要看 maintenance.php 存不存在？程序跑起来是怎么跑起来的？具体做了什么？\n我们往下看。\nLARAVEL_START 的意义 作为第一行代码，它的意义其实没有想象的那么高深，它的作用仅仅是为了记录程序开始时间，从而统计程序的总执行时间。（用截止时间 - 启动时间 = 程序执行时间），我们通常会说程序运行慢，不够快，那么是怎么得出来的？就是这么得出来的。\nlaravel 的维护模式 回到我们上面说的问题：检查是否维护为什么要看 maintenance.php 存不存在？我们运行 php artisan down 命令后会发现，在 storage/framework 下生成了两个文件，一个是 down,一个是 maintenance.php,这就是结果，你可以理解到这里，也可以继续往下深入，我想说的是，重要的不是结果，而是过程，同理，我主要会写我思考的过程，而不是我思考后发现的结果。\n首先，我们通过阅读官方文档后得知，laravel 的维护模式是通过 php artisan down 命令开始的，通过 php artisan up 命令结束的。然后，我们去找 php artisan down 这个命令做了什么东西，可以全局搜索 DownCommand 来找到我们需要的文件；\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 \u003c?php namespace Illuminate\\Foundation\\Console; use App\\Http\\Middleware\\PreventRequestsDuringMaintenance; use Exception; use Illuminate\\Console\\Command; use Illuminate\\Foundation\\Events\\MaintenanceModeEnabled; use Illuminate\\Foundation\\Exceptions\\RegisterErrorViewPaths; use Throwable; class DownCommand extends Command { /** * 定义控制台命令 * * @var string */ protected $signature = 'down {--redirect= : The path that users should be redirected to} {--render= : The view that should be prerendered for display during maintenance mode} {--retry= : The number of seconds after which the request may be retried} {--refresh= : The number of seconds after which the browser may refresh} {--secret= : The secret phrase that may be used to bypass maintenance mode} {--status=503 : The status code that should be used when returning the maintenance mode response}'; /** * 命令标识 * * @var string|null */ protected static $defaultName = 'down'; /** * 说明 * * @var string */ protected $description = 'Put the application into maintenance / demo mode'; /** * 具体执行了那些内容 * * @return int */ public function handle() { try { //这里判断是否已经处于维护模式，如果是返回Application is already down. if ($this-\u003elaravel-\u003emaintenanceMode()-\u003eactive()) { $this-\u003ecomment('Application is already down.'); return 0; } //创建down文件，写入getDownFilePayload()方法里面返回的数据 $this-\u003elaravel-\u003emaintenanceMode()-\u003eactivate($this-\u003egetDownFilePayload()); //写入数据，就是创建maintenance.php文件，写入maintenance-mode.stub里面的数据 file_put_contents( storage_path('framework/maintenance.php'), file_get_contents(__DIR__.'/stubs/maintenance-mode.stub') ); //开启事件 $this-\u003elaravel-\u003eget('events')-\u003edispatch(MaintenanceModeEnabled::class); //输出提示语 $this-\u003ecomment('Application is now in maintenance mode.'); } catch (Exception $e) { $this-\u003eerror('Failed to enter maintenance mode.'); $this-\u003eerror($e-\u003egetMessage()); return 1; } } /** * Get the payload to be placed in the \"down\" file. * * @return array */ protected function getDownFilePayload() { return [ 'except' =\u003e $this-\u003eexcludedPaths(), 'redirect' =\u003e $this-\u003eredirectPath(), 'retry' =\u003e $this-\u003egetRetryTime(), 'refresh' =\u003e $this-\u003eoption('refresh'), 'secret' =\u003e $this-\u003eoption('secret'), 'status' =\u003e (int) $this-\u003eoption('status', 503), 'template' =\u003e $this-\u003eoption('render') ? $this-\u003eprerenderView() : null, ]; } /** * Get the paths that should be excluded from maintenance mode. * * @return array */ protected function excludedPaths() { try { return $this-\u003elaravel-\u003emake(PreventRequestsDuringMaintenance::class)-\u003egetExcludedPaths(); } catch (Throwable $e) { return []; } } /** * Get the path that users should be redirected to. * * @return string */ protected function redirectPath() { if ($this-\u003eoption('redirect') \u0026\u0026 $this-\u003eoption('redirect') !== '/') { return '/'.trim($this-\u003eoption('redirect'), '/'); } return $this-\u003eoption('redirect'); } /** * Prerender the specified view so that it can be rendered even before loading Composer. * * @return string */ protected function prerenderView() { (new RegisterErrorViewPaths)(); return view($this-\u003eoption('render'), [ 'retryAfter' =\u003e $this-\u003eoption('retry'), ])-\u003erender(); } /** * Get the number of seconds the client should wait before retrying their request. * * @return int|null */ protected function getRetryTime() { $retry = $this-\u003eoption('retry'); return is_numeric($retry) \u0026\u0026 $retry \u003e 0 ? (int) $retry : null; } } 跑起来 1 2 3 4 5 6 7 8 9 10 11 12 13 14 //引入Composer注册自动加载程序, Laravel的自动类文件自动加载等功能都是通过Composer来实现的 require __DIR__.'/../vendor/autoload.php'; //引入核心应用类, 主要是实现核心类库加载以及Laravel框架中核心的服务容器注册加载等 $app = require_once __DIR__.'/../bootstrap/app.php'; //获取在app.php中已经注册的Kernel $kernel = $app-\u003emake(Illuminate\\Contracts\\Http\\Kernel::class); //容器中绑定的Kernel是App\\Http下的，该类继承了Illuminate\\Foundation\\Http下的Kernel，这里调用的就是父类的handle方法 //主要实现的功能是通过管道实现中间件及路由分发执行 $response = $kernel-\u003ehandle( //创建request实例 $request = Request::capture() )-\u003esend();//响应请求 //响应中间件 $kernel-\u003eterminate($request, $response); ",
+  "wordCount" : "869",
+  "inLanguage": "en",
+  "datePublished": "2022-03-29T19:41:21+08:00",
+  "dateModified": "2022-03-29T19:41:21+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Jouzeyu"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://jouzeyu.com/posts/laravel-parsing-entry-file/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "羡鱼戏渊",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jouzeyu.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://jouzeyu.com/" accesskey="h" title="羡鱼戏渊 (Alt + H)">羡鱼戏渊</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://jouzeyu.com/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://jouzeyu.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://jouzeyu.com/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://jouzeyu.com/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://jouzeyu.com/">Home</a>&nbsp;»&nbsp;<a href="https://jouzeyu.com/posts/">Posts</a></div>
+    <h1 class="post-title">
+      Laravel解析-入口文件
+    </h1>
+    <div class="post-meta"><span title='2022-03-29 19:41:21 +0800 CST'>March 29, 2022</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;869 words&nbsp;·&nbsp;Jouzeyu
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#整体逻辑">整体逻辑</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Illuminate\Contracts\Http\Kernel</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;LARAVEL_START&#39;</span><span class="p">,</span> <span class="nx">microtime</span><span class="p">(</span><span class="k">true</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">|--------------------------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="cm">| Check If The Application Is Under Maintenance
+</span></span></span><span class="line"><span class="cl"><span class="cm">|--------------------------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="cm">|
+</span></span></span><span class="line"><span class="cl"><span class="cm">| If the application is in maintenance / demo mode via the &#34;down&#34; command
+</span></span></span><span class="line"><span class="cl"><span class="cm">| we will load this file so that any pre-rendered content can be shown
+</span></span></span><span class="line"><span class="cl"><span class="cm">| instead of starting the framework, which could cause an exception.
+</span></span></span><span class="line"><span class="cl"><span class="cm">|
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">file_exists</span><span class="p">(</span><span class="nv">$maintenance</span> <span class="o">=</span> <span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/../storage/framework/maintenance.php&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">require</span> <span class="nv">$maintenance</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">|--------------------------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="cm">| Register The Auto Loader
+</span></span></span><span class="line"><span class="cl"><span class="cm">|--------------------------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="cm">|
+</span></span></span><span class="line"><span class="cl"><span class="cm">| Composer provides a convenient, automatically generated class loader for
+</span></span></span><span class="line"><span class="cl"><span class="cm">| this application. We just need to utilize it! We&#39;ll simply require it
+</span></span></span><span class="line"><span class="cl"><span class="cm">| into the script here so we don&#39;t need to manually load our classes.
+</span></span></span><span class="line"><span class="cl"><span class="cm">|
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">require</span> <span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/../vendor/autoload.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">|--------------------------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="cm">| Run The Application
+</span></span></span><span class="line"><span class="cl"><span class="cm">|--------------------------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="cm">|
+</span></span></span><span class="line"><span class="cl"><span class="cm">| Once we have the application, we can handle the incoming request using
+</span></span></span><span class="line"><span class="cl"><span class="cm">| the application&#39;s HTTP kernel. Then, we will send the response back
+</span></span></span><span class="line"><span class="cl"><span class="cm">| to this client&#39;s browser, allowing them to enjoy our application.
+</span></span></span><span class="line"><span class="cl"><span class="cm">|
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$app</span> <span class="o">=</span> <span class="k">require_once</span> <span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/../bootstrap/app.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$kernel</span> <span class="o">=</span> <span class="nv">$app</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">(</span><span class="nx">Kernel</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$response</span> <span class="o">=</span> <span class="nv">$kernel</span><span class="o">-&gt;</span><span class="na">handle</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$request</span> <span class="o">=</span> <span class="nx">Request</span><span class="o">::</span><span class="na">capture</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$kernel</span><span class="o">-&gt;</span><span class="na">terminate</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="整体逻辑">整体逻辑<a hidden class="anchor" aria-hidden="true" href="#整体逻辑">#</a></h3>
+<p>众所周知，代码是从上而下执行的，我们先大体了解下 laravel 的入口文件都做了什么事情，作者也是第一次分析源码，如有不足的地方敬请谅解。</p>
+<p>首先定义了一个 LARAVEL_START 的常量，值是浮点类型的当前 Unix 时间戳的微秒数-&gt;接着检查应用程序是否在维护，也就是检查 storage/framework/maintenance.php 这个路径的文件是否存在-&gt;接着加载 autoload、引入 bootstrap/app.php 直到跑起来；</p>
+<p>看到这里我们会有很多疑问，最起码我有很多疑问，比如一开始定义的常量有什么用？检查是否维护为什么要看 maintenance.php 存不存在？程序跑起来是怎么跑起来的？具体做了什么？</p>
+<p>我们往下看。</p>
+<h4 id="laravel_start-的意义">LARAVEL_START 的意义<a hidden class="anchor" aria-hidden="true" href="#laravel_start-的意义">#</a></h4>
+<p>作为第一行代码，它的意义其实没有想象的那么高深，它的作用仅仅是为了记录程序开始时间，从而统计程序的总执行时间。（用截止时间 - 启动时间 = 程序执行时间），我们通常会说程序运行慢，不够快，那么是怎么得出来的？就是这么得出来的。</p>
+<h4 id="laravel-的维护模式">laravel 的维护模式<a hidden class="anchor" aria-hidden="true" href="#laravel-的维护模式">#</a></h4>
+<p>回到我们上面说的问题：检查是否维护为什么要看 maintenance.php 存不存在？我们运行 php artisan down 命令后会发现，在 storage/framework 下生成了两个文件，一个是 down,一个是 maintenance.php,这就是结果，你可以理解到这里，也可以继续往下深入，我想说的是，重要的不是结果，而是过程，同理，我主要会写我思考的过程，而不是我思考后发现的结果。</p>
+<p>首先，我们通过阅读官方文档后得知，laravel 的维护模式是通过 php artisan down 命令开始的，通过 php artisan up 命令结束的。然后，我们去找 php artisan down 这个命令做了什么东西，可以全局搜索 DownCommand 来找到我们需要的文件；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nx">Illuminate\Foundation\Console</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">App\Http\Middleware\PreventRequestsDuringMaintenance</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Exception</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Illuminate\Console\Command</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Illuminate\Foundation\Events\MaintenanceModeEnabled</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Illuminate\Foundation\Exceptions\RegisterErrorViewPaths</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Throwable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DownCommand</span> <span class="k">extends</span> <span class="nx">Command</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * 定义控制台命令
+</span></span></span><span class="line"><span class="cl"><span class="sd">     *
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @var string
+</span></span></span><span class="line"><span class="cl"><span class="sd">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="nv">$signature</span> <span class="o">=</span> <span class="s1">&#39;down {--redirect= : The path that users should be redirected to}
+</span></span></span><span class="line"><span class="cl"><span class="s1">                                 {--render= : The view that should be prerendered for display during maintenance mode}
+</span></span></span><span class="line"><span class="cl"><span class="s1">                                 {--retry= : The number of seconds after which the request may be retried}
+</span></span></span><span class="line"><span class="cl"><span class="s1">                                 {--refresh= : The number of seconds after which the browser may refresh}
+</span></span></span><span class="line"><span class="cl"><span class="s1">                                 {--secret= : The secret phrase that may be used to bypass maintenance mode}
+</span></span></span><span class="line"><span class="cl"><span class="s1">                                 {--status=503 : The status code that should be used when returning the maintenance mode response}&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * 命令标识
+</span></span></span><span class="line"><span class="cl"><span class="sd">     *
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @var string|null
+</span></span></span><span class="line"><span class="cl"><span class="sd">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="k">static</span> <span class="nv">$defaultName</span> <span class="o">=</span> <span class="s1">&#39;down&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * 说明
+</span></span></span><span class="line"><span class="cl"><span class="sd">     *
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @var string
+</span></span></span><span class="line"><span class="cl"><span class="sd">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="nv">$description</span> <span class="o">=</span> <span class="s1">&#39;Put the application into maintenance / demo mode&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * 具体执行了那些内容
+</span></span></span><span class="line"><span class="cl"><span class="sd">     *
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @return int
+</span></span></span><span class="line"><span class="cl"><span class="sd">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">//这里判断是否已经处于维护模式，如果是返回Application is already down.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">laravel</span><span class="o">-&gt;</span><span class="na">maintenanceMode</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">active</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">&#39;Application is already down.&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">						<span class="c1">//创建down文件，写入getDownFilePayload()方法里面返回的数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">laravel</span><span class="o">-&gt;</span><span class="na">maintenanceMode</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">activate</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getDownFilePayload</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">						<span class="c1">//写入数据，就是创建maintenance.php文件，写入maintenance-mode.stub里面的数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nx">file_put_contents</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">storage_path</span><span class="p">(</span><span class="s1">&#39;framework/maintenance.php&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">file_get_contents</span><span class="p">(</span><span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/stubs/maintenance-mode.stub&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">);</span>
+</span></span><span class="line"><span class="cl">						<span class="c1">//开启事件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">laravel</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;events&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">dispatch</span><span class="p">(</span><span class="nx">MaintenanceModeEnabled</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">						<span class="c1">//输出提示语
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">&#39;Application is now in maintenance mode.&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span><span class="s1">&#39;Failed to enter maintenance mode.&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * Get the payload to be placed in the &#34;down&#34; file.
+</span></span></span><span class="line"><span class="cl"><span class="sd">     *
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @return array
+</span></span></span><span class="line"><span class="cl"><span class="sd">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="k">function</span> <span class="nf">getDownFilePayload</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;except&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">excludedPaths</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;redirect&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">redirectPath</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;retry&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getRetryTime</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;refresh&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">option</span><span class="p">(</span><span class="s1">&#39;refresh&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;secret&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">option</span><span class="p">(</span><span class="s1">&#39;secret&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;status&#39;</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">int</span><span class="p">)</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">option</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="mi">503</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;template&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">option</span><span class="p">(</span><span class="s1">&#39;render&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">prerenderView</span><span class="p">()</span> <span class="o">:</span> <span class="k">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * Get the paths that should be excluded from maintenance mode.
+</span></span></span><span class="line"><span class="cl"><span class="sd">     *
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @return array
+</span></span></span><span class="line"><span class="cl"><span class="sd">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="k">function</span> <span class="nf">excludedPaths</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">laravel</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">(</span><span class="nx">PreventRequestsDuringMaintenance</span><span class="o">::</span><span class="na">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getExcludedPaths</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Throwable</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * Get the path that users should be redirected to.
+</span></span></span><span class="line"><span class="cl"><span class="sd">     *
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @return string
+</span></span></span><span class="line"><span class="cl"><span class="sd">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="k">function</span> <span class="nf">redirectPath</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">option</span><span class="p">(</span><span class="s1">&#39;redirect&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">option</span><span class="p">(</span><span class="s1">&#39;redirect&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="nx">trim</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">option</span><span class="p">(</span><span class="s1">&#39;redirect&#39;</span><span class="p">),</span> <span class="s1">&#39;/&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">option</span><span class="p">(</span><span class="s1">&#39;redirect&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * Prerender the specified view so that it can be rendered even before loading Composer.
+</span></span></span><span class="line"><span class="cl"><span class="sd">     *
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @return string
+</span></span></span><span class="line"><span class="cl"><span class="sd">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="k">function</span> <span class="nf">prerenderView</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="k">new</span> <span class="nx">RegisterErrorViewPaths</span><span class="p">)();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">option</span><span class="p">(</span><span class="s1">&#39;render&#39;</span><span class="p">),</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;retryAfter&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">option</span><span class="p">(</span><span class="s1">&#39;retry&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="p">])</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * Get the number of seconds the client should wait before retrying their request.
+</span></span></span><span class="line"><span class="cl"><span class="sd">     *
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @return int|null
+</span></span></span><span class="line"><span class="cl"><span class="sd">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="k">function</span> <span class="nf">getRetryTime</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$retry</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">option</span><span class="p">(</span><span class="s1">&#39;retry&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">is_numeric</span><span class="p">(</span><span class="nv">$retry</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nv">$retry</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="p">(</span><span class="nx">int</span><span class="p">)</span> <span class="nv">$retry</span> <span class="o">:</span> <span class="k">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="跑起来">跑起来<a hidden class="anchor" aria-hidden="true" href="#跑起来">#</a></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">//引入Composer注册自动加载程序, Laravel的自动类文件自动加载等功能都是通过Composer来实现的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">require</span> <span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/../vendor/autoload.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//引入核心应用类, 主要是实现核心类库加载以及Laravel框架中核心的服务容器注册加载等
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$app</span> <span class="o">=</span> <span class="k">require_once</span> <span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/../bootstrap/app.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//获取在app.php中已经注册的Kernel
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$kernel</span> <span class="o">=</span> <span class="nv">$app</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">(</span><span class="nx">Illuminate\Contracts\Http\Kernel</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//容器中绑定的Kernel是App\Http下的，该类继承了Illuminate\Foundation\Http下的Kernel，这里调用的就是父类的handle方法
+</span></span></span><span class="line"><span class="cl"><span class="c1">//主要实现的功能是通过管道实现中间件及路由分发执行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$response</span> <span class="o">=</span> <span class="nv">$kernel</span><span class="o">-&gt;</span><span class="na">handle</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  	<span class="c1">//创建request实例
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$request</span> <span class="o">=</span> <span class="nx">Request</span><span class="o">::</span><span class="na">capture</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span><span class="c1">//响应请求
+</span></span></span><span class="line"><span class="cl"><span class="c1">//响应中间件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$kernel</span><span class="o">-&gt;</span><span class="na">terminate</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://jouzeyu.com/tags/laravel/">Laravel</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://jouzeyu.com/posts/mysql-study-notes/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Mysql 学习笔记</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span><strong><a href="https://jouzeyu.com">羡鱼戏渊</a></strong></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a><span class="footer-user" style="text-align: center;display: block;">
+    <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2021035805号-1</a>
+</span>
+<style>
+    .footer-user {
+        font-size: 12px;
+        color: var(--secondary);
+        max-width: calc(var(--main-width) + var(--gap) * 2);
+        margin: auto;
+        padding-bottom: 20px;
+        text-align: center;
+        line-height: 24px;
+    }
+</style>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
