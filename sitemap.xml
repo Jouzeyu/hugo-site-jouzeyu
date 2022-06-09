@@ -5,13 +5,13 @@
     <loc>https://jouzeyu.com/categories/</loc>
     <lastmod>2022-06-09T22:58:00+08:00</lastmod>
   </url><url>
-    <loc>https://jouzeyu.com/posts/distinguish-routing-files-by-namespace/</loc>
-    <lastmod>2022-06-09T22:58:00+08:00</lastmod>
-  </url><url>
     <loc>https://jouzeyu.com/tags/laravel/</loc>
     <lastmod>2022-06-09T22:58:00+08:00</lastmod>
   </url><url>
     <loc>https://jouzeyu.com/posts/</loc>
+    <lastmod>2022-06-09T22:58:00+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/tags/router/</loc>
     <lastmod>2022-06-09T22:58:00+08:00</lastmod>
   </url><url>
     <loc>https://jouzeyu.com/tags/</loc>
@@ -21,6 +21,9 @@
     <lastmod>2022-06-09T22:58:00+08:00</lastmod>
   </url><url>
     <loc>https://jouzeyu.com/</loc>
+    <lastmod>2022-06-09T22:58:00+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/posts/distinguish-routing-files-by-namespace/</loc>
     <lastmod>2022-06-09T22:58:00+08:00</lastmod>
   </url><url>
     <loc>https://jouzeyu.com/posts/laravel-parsing-entry-file/</loc>

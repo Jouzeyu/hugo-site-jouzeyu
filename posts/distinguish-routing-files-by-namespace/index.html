@@ -5,8 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Distinguish Routing Files by Namespace | 羡鱼戏渊</title>
-<meta name="keywords" content="laravel">
+<title>通过命名空间区分路由文件 | 羡鱼戏渊</title>
+<meta name="keywords" content="laravel, router">
 <meta name="description" content="不要让时代的悲哀，成为你的悲哀！">
 <meta name="author" content="Jouzeyu">
 <link rel="canonical" href="https://jouzeyu.com/posts/distinguish-routing-files-by-namespace/">
@@ -56,7 +56,7 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="Distinguish Routing Files by Namespace" />
+</noscript><meta property="og:title" content="通过命名空间区分路由文件" />
 <meta property="og:description" content="不要让时代的悲哀，成为你的悲哀！" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jouzeyu.com/posts/distinguish-routing-files-by-namespace/" /><meta property="og:image" content="https://jouzeyu.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"/><meta property="article:section" content="posts" />
@@ -66,7 +66,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://jouzeyu.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"/>
 
-<meta name="twitter:title" content="Distinguish Routing Files by Namespace"/>
+<meta name="twitter:title" content="通过命名空间区分路由文件"/>
 <meta name="twitter:description" content="不要让时代的悲哀，成为你的悲哀！"/>
 
 
@@ -84,7 +84,7 @@
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "Distinguish Routing Files by Namespace",
+      "name": "通过命名空间区分路由文件",
       "item": "https://jouzeyu.com/posts/distinguish-routing-files-by-namespace/"
     }
   ]
@@ -94,14 +94,14 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Distinguish Routing Files by Namespace",
-  "name": "Distinguish Routing Files by Namespace",
+  "headline": "通过命名空间区分路由文件",
+  "name": "通过命名空间区分路由文件",
   "description": "不要让时代的悲哀，成为你的悲哀！",
   "keywords": [
-    "laravel"
+    "laravel", "router"
   ],
-  "articleBody": "",
-  "wordCount" : "0",
+  "articleBody": "我们先来看Laravel 8 的更新日志： 路由命名空间更新 在 Laravel 的早期版本中，RouteServiceProvider 具有 $namespace 属性。该属性的值将自动添加到控制器路由定义的前缀，并调用 action 助手函数或者 URL::action 方法。在 Laravel 8.x 中，默认情况下此属性为 null。这意味着 Laravel 不会自动命名空间前缀。因此，在新的 Laravel 8.x 应用程序中，应使用标准的 PHP 语法定义控制器路由：\n1 2 3 use App\\Http\\Controllers\\UserController; Route::get('/users', [UserController::class, 'index']); ok，了解了前置内容后，就容易多了，因为这一变动，我们经常碰见这种情况，例如，为不同的用户角色设置了 HomeController，例如 Admin/HomeController 和 User/HomeController。 如果在路由中使用完整路径，它看起来像这样：\n1 2 3 4 5 6 7 8 9 10 use App\\Http\\Controllers\\Admin\\HomeController; use App\\Http\\Controllers\\User\\HomeController; Route::prefix('admin')-\u003emiddleware('is_admin')-\u003egroup(function () { Route::get('home', [HomeController::class, 'index']); }); Route::prefix('user')-\u003emiddleware('is_user')-\u003egroup(function () { Route::get('home', [HomeController::class, 'index']); }); 这样有个问题，那就是分不清哪个是后台的控制器，当然我们可以设置别名，类似这样：\n1 2 3 4 5 6 7 8 9 10 use App\\Http\\Controllers\\Admin\\HomeController as AdminHomeController; use App\\Http\\Controllers\\User\\HomeController; Route::prefix('admin')-\u003emiddleware('is_admin')-\u003egroup(function () { Route::get('home', [AdminHomeController::class, 'index']); }); Route::prefix('user')-\u003emiddleware('is_user')-\u003egroup(function () { Route::get('home', [HomeController::class, 'index']); }); 但是，我觉得这样看起来更优雅：\n1 2 3 4 5 6 7 8 9 Route::prefix('admin')-\u003enamespace('App\\Http\\Controllers\\Admin')-\u003emiddleware('is_admin')-\u003egroup(function () { Route::get('home', [HomeController::class, 'index']); // ... Admin 命名空间中的其他控制器 }); Route::prefix('user')-\u003enamespace('App\\Http\\Controllers\\User')-\u003emiddleware('is_user')-\u003egroup(function () { Route::get('home', [HomeController::class, 'index']); // ... 来自用户命名空间的其他控制器 }); ",
+  "wordCount" : "129",
   "inLanguage": "en",
   "datePublished": "2022-06-09T22:58:00+08:00",
   "dateModified": "2022-06-09T22:58:00+08:00",
@@ -194,17 +194,115 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://jouzeyu.com/">Home</a>&nbsp;»&nbsp;<a href="https://jouzeyu.com/posts/">Posts</a></div>
     <h1 class="post-title">
-      Distinguish Routing Files by Namespace<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
+      通过命名空间区分路由文件
     </h1>
-    <div class="post-meta"><span title='2022-06-09 22:58:00 +0800 CST'>June 9, 2022</span>&nbsp;·&nbsp;0 min&nbsp;·&nbsp;0 words&nbsp;·&nbsp;Jouzeyu
+    <div class="post-meta"><span title='2022-06-09 22:58:00 +0800 CST'>June 9, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;129 words&nbsp;·&nbsp;Jouzeyu
 
 </div>
   </header> 
 
+  <div class="post-content"><p>我们先来看Laravel 8 的更新日志：
+路由命名空间更新
+在 Laravel 的早期版本中，RouteServiceProvider 具有 $namespace 属性。该属性的值将自动添加到控制器路由定义的前缀，并调用 action 助手函数或者 URL::action 方法。在 Laravel 8.x 中，默认情况下此属性为 null。这意味着 Laravel 不会自动命名空间前缀。因此，在新的 Laravel 8.x 应用程序中，应使用标准的 PHP 语法定义控制器路由：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">App\Http\Controllers\UserController</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/users&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">UserController</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">]);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>ok，了解了前置内容后，就容易多了，因为这一变动，我们经常碰见这种情况，例如，为不同的用户角色设置了 HomeController，例如 Admin/HomeController 和 User/HomeController。 如果在路由中使用完整路径，它看起来像这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">App\Http\Controllers\Admin\HomeController</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">App\Http\Controllers\User\HomeController</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Route</span><span class="o">::</span><span class="na">prefix</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="p">(</span><span class="s1">&#39;is_admin&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">HomeController</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Route</span><span class="o">::</span><span class="na">prefix</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="p">(</span><span class="s1">&#39;is_user&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">HomeController</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样有个问题，那就是分不清哪个是后台的控制器，当然我们可以设置别名，类似这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">App\Http\Controllers\Admin\HomeController</span> <span class="k">as</span> <span class="nx">AdminHomeController</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">App\Http\Controllers\User\HomeController</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Route</span><span class="o">::</span><span class="na">prefix</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="p">(</span><span class="s1">&#39;is_admin&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">AdminHomeController</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Route</span><span class="o">::</span><span class="na">prefix</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="p">(</span><span class="s1">&#39;is_user&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">HomeController</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是，我觉得这样看起来更优雅：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">Route</span><span class="o">::</span><span class="na">prefix</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">namespace</span><span class="p">(</span><span class="s1">&#39;App\Http\Controllers\Admin&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="p">(</span><span class="s1">&#39;is_admin&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">HomeController</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ... Admin 命名空间中的其他控制器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Route</span><span class="o">::</span><span class="na">prefix</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">namespace</span><span class="p">(</span><span class="s1">&#39;App\Http\Controllers\User&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="p">(</span><span class="s1">&#39;is_user&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">HomeController</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ... 来自用户命名空间的其他控制器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+  </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
       <li><a href="https://jouzeyu.com/tags/laravel/">laravel</a></li>
+      <li><a href="https://jouzeyu.com/tags/router/">router</a></li>
     </ul>
 <nav class="paginav">
   <a class="next" href="https://jouzeyu.com/posts/laravel-parsing-entry-file/">
