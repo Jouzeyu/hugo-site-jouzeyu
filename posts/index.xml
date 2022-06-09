@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>**[羡鱼戏渊](https://jouzeyu.com)**</copyright>
-    <lastBuildDate>Tue, 29 Mar 2022 19:41:21 +0800</lastBuildDate><atom:link href="https://jouzeyu.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Jun 2022 22:58:00 +0800</lastBuildDate><atom:link href="https://jouzeyu.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Distinguish Routing Files by Namespace</title>
+      <link>https://jouzeyu.com/posts/distinguish-routing-files-by-namespace/</link>
+      <pubDate>Thu, 09 Jun 2022 22:58:00 +0800</pubDate>
+      
+      <guid>https://jouzeyu.com/posts/distinguish-routing-files-by-namespace/</guid>
+      <description>不要让时代的悲哀，成为你的悲哀！</description>
+    </item>
+    
     <item>
       <title>Laravel解析-入口文件</title>
       <link>https://jouzeyu.com/posts/laravel-parsing-entry-file/</link>
