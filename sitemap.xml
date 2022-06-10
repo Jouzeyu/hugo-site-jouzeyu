@@ -3,24 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://jouzeyu.com/categories/</loc>
-    <lastmod>2022-06-09T22:58:00+08:00</lastmod>
-  </url><url>
-    <loc>https://jouzeyu.com/tags/laravel/</loc>
-    <lastmod>2022-06-09T22:58:00+08:00</lastmod>
+    <lastmod>2022-06-10T22:49:48+08:00</lastmod>
   </url><url>
     <loc>https://jouzeyu.com/posts/</loc>
+    <lastmod>2022-06-10T22:49:48+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/tags/</loc>
+    <lastmod>2022-06-10T22:49:48+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/posts/life_20220610/</loc>
+    <lastmod>2022-06-10T22:49:48+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/tags/%E7%84%A6%E8%99%91/</loc>
+    <lastmod>2022-06-10T22:49:48+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/categories/%E7%94%9F%E6%B4%BB/</loc>
+    <lastmod>2022-06-10T22:49:48+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/</loc>
+    <lastmod>2022-06-10T22:49:48+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/tags/laravel/</loc>
     <lastmod>2022-06-09T22:58:00+08:00</lastmod>
   </url><url>
     <loc>https://jouzeyu.com/tags/router/</loc>
     <lastmod>2022-06-09T22:58:00+08:00</lastmod>
   </url><url>
-    <loc>https://jouzeyu.com/tags/</loc>
-    <lastmod>2022-06-09T22:58:00+08:00</lastmod>
-  </url><url>
     <loc>https://jouzeyu.com/categories/%E7%BC%96%E7%A0%81/</loc>
-    <lastmod>2022-06-09T22:58:00+08:00</lastmod>
-  </url><url>
-    <loc>https://jouzeyu.com/</loc>
     <lastmod>2022-06-09T22:58:00+08:00</lastmod>
   </url><url>
     <loc>https://jouzeyu.com/posts/distinguish-routing-files-by-namespace/</loc>
