@@ -5,12 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Archive | 羡鱼戏渊</title>
-<meta name="keywords" content="">
-<meta name="description" content="archives">
+<title>Mac os 使用brew工具时报错No remote ‘origin‘ | 羡鱼戏渊</title>
+<meta name="keywords" content="brew">
+<meta name="description" content="不要让时代的悲哀，成为你的悲哀！">
 <meta name="author" content="Jouzeyu">
-<link rel="canonical" href="https://jouzeyu.com/archives/">
+<link rel="canonical" href="https://jouzeyu.com/posts/error_20220611/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.d7fb4cbf980fe688a21621b06a795933c4e6bb2d4070ec940667af1715d84af2.css" integrity="sha256-1/tMv5gP5oiiFiGwanlZM8Tmuy1AcOyUBmevFxXYSvI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://jouzeyu.com/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://jouzeyu.com/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://jouzeyu.com/favicon-32x32.png">
@@ -54,18 +56,18 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="Archive" />
-<meta property="og:description" content="archives" />
+</noscript><meta property="og:title" content="Mac os 使用brew工具时报错No remote ‘origin‘" />
+<meta property="og:description" content="不要让时代的悲哀，成为你的悲哀！" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://jouzeyu.com/archives/" /><meta property="og:image" content="https://jouzeyu.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"/><meta property="article:section" content="" />
-
-<meta property="og:site_name" content="羡鱼戏渊" />
+<meta property="og:url" content="https://jouzeyu.com/posts/error_20220611/" /><meta property="og:image" content="https://jouzeyu.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-11T22:30:22&#43;08:00" />
+<meta property="article:modified_time" content="2022-06-11T22:30:22&#43;08:00" /><meta property="og:site_name" content="羡鱼戏渊" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://jouzeyu.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"/>
 
-<meta name="twitter:title" content="Archive"/>
-<meta name="twitter:description" content="archives"/>
+<meta name="twitter:title" content="Mac os 使用brew工具时报错No remote ‘origin‘"/>
+<meta name="twitter:description" content="不要让时代的悲哀，成为你的悲哀！"/>
 
 
 <script type="application/ld+json">
@@ -76,8 +78,14 @@
     {
       "@type": "ListItem",
       "position":  1 ,
-      "name": "Archive",
-      "item": "https://jouzeyu.com/archives/"
+      "name": "Posts",
+      "item": "https://jouzeyu.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Mac os 使用brew工具时报错No remote ‘origin‘",
+      "item": "https://jouzeyu.com/posts/error_20220611/"
     }
   ]
 }
@@ -86,24 +94,24 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Archive",
-  "name": "Archive",
-  "description": "archives",
+  "headline": "Mac os 使用brew工具时报错No remote ‘origin‘",
+  "name": "Mac os 使用brew工具时报错No remote ‘origin‘",
+  "description": "不要让时代的悲哀，成为你的悲哀！",
   "keywords": [
-    
+    "brew"
   ],
-  "articleBody": "",
-  "wordCount" : "0",
+  "articleBody": "今天早上使用brew 安装东西的时候，没有安装成功，于是我先更新了一下brew ,返回了以下信息：\n1 2 3 4 Warning: No remote 'origin' in /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core, skipping update! Warning: No remote 'origin' in /usr/local/Homebrew/Library/Taps/homebrew/homebrew-services, skipping update! Warning: No remote 'origin' in /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask, skipping update! Already up-to-date. 开始解决：\n1 2 3 4 5 6 rm -rf \"/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core\" brew tap homebrew/core rm -rf \"/usr/local/Homebrew/Library/Taps/homebrew/homebrew-services\" brew tap homebrew/services rm -rf \"/usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask\" brew tap homebrew/cask 再次运行brew update ，显示成功！ 再次运行原来的安装命令，成功！\n",
+  "wordCount" : "62",
   "inLanguage": "en",
-  "datePublished": "0001-01-01T00:00:00Z",
-  "dateModified": "0001-01-01T00:00:00Z",
+  "datePublished": "2022-06-11T22:30:22+08:00",
+  "dateModified": "2022-06-11T22:30:22+08:00",
   "author":{
     "@type": "Person",
     "name": "Jouzeyu"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://jouzeyu.com/archives/"
+    "@id": "https://jouzeyu.com/posts/error_20220611/"
   },
   "publisher": {
     "@type": "Organization",
@@ -117,7 +125,7 @@
 </script>
 </head>
 
-<body class="list" id="top">
+<body class="" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.body.classList.add('dark');
@@ -159,7 +167,7 @@
         <ul id="menu">
             <li>
                 <a href="https://jouzeyu.com/archives" title="Archive">
-                    <span class="active">Archive</span>
+                    <span>Archive</span>
                 </a>
             </li>
             <li>
@@ -182,71 +190,71 @@
 </header>
 <main class="main">
 
-<header class="page-header">
-  <h1>Archive</h1>
-</header>
-<div class="archive-year">
-  <h2 class="archive-year-header">2022<sup class="archive-count">&nbsp;&nbsp;8</sup>
-  </h2>
-  <div class="archive-month">
-    <h3 class="archive-month-header">June<sup class="archive-count">&nbsp;&nbsp;3</sup></h3>
-    <div class="archive-posts">
-      <div class="archive-entry">
-        <h3 class="archive-entry-title">Mac os 使用brew工具时报错No remote ‘origin‘
-        </h3>
-        <div class="archive-meta"><span title='2022-06-11 22:30:22 +0800 CST'>June 11, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;62 words&nbsp;·&nbsp;Jouzeyu</div>
-        <a class="entry-link" aria-label="post link to Mac os 使用brew工具时报错No remote ‘origin‘" href="https://jouzeyu.com/posts/error_20220611/"></a>
-      </div>
-      <div class="archive-entry">
-        <h3 class="archive-entry-title">你的焦虑是因为你还没有认命
-        </h3>
-        <div class="archive-meta"><span title='2022-06-10 22:49:48 +0800 CST'>June 10, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;14 words&nbsp;·&nbsp;Jouzeyu</div>
-        <a class="entry-link" aria-label="post link to 你的焦虑是因为你还没有认命" href="https://jouzeyu.com/posts/life_20220610/"></a>
-      </div>
-      <div class="archive-entry">
-        <h3 class="archive-entry-title">通过命名空间区分路由文件
-        </h3>
-        <div class="archive-meta"><span title='2022-06-09 22:58:00 +0800 CST'>June 9, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;129 words&nbsp;·&nbsp;Jouzeyu</div>
-        <a class="entry-link" aria-label="post link to 通过命名空间区分路由文件" href="https://jouzeyu.com/posts/distinguish-routing-files-by-namespace/"></a>
-      </div>
-    </div>
-  </div>
-  <div class="archive-month">
-    <h3 class="archive-month-header">March<sup class="archive-count">&nbsp;&nbsp;5</sup></h3>
-    <div class="archive-posts">
-      <div class="archive-entry">
-        <h3 class="archive-entry-title">Laravel解析-入口文件
-        </h3>
-        <div class="archive-meta"><span title='2022-03-29 19:41:21 +0800 CST'>March 29, 2022</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;869 words&nbsp;·&nbsp;Jouzeyu</div>
-        <a class="entry-link" aria-label="post link to Laravel解析-入口文件" href="https://jouzeyu.com/posts/laravel-parsing-entry-file/"></a>
-      </div>
-      <div class="archive-entry">
-        <h3 class="archive-entry-title">Mysql 学习笔记
-        </h3>
-        <div class="archive-meta"><span title='2022-03-20 19:38:32 +0800 CST'>March 20, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;55 words&nbsp;·&nbsp;Jouzeyu</div>
-        <a class="entry-link" aria-label="post link to Mysql 学习笔记" href="https://jouzeyu.com/posts/mysql-study-notes/"></a>
-      </div>
-      <div class="archive-entry">
-        <h3 class="archive-entry-title">PHP与面向对象编程浅谈
-        </h3>
-        <div class="archive-meta"><span title='2022-03-20 19:35:57 +0800 CST'>March 20, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;37 words&nbsp;·&nbsp;Jouzeyu</div>
-        <a class="entry-link" aria-label="post link to PHP与面向对象编程浅谈" href="https://jouzeyu.com/posts/php-and-object-oriented-programming/"></a>
-      </div>
-      <div class="archive-entry">
-        <h3 class="archive-entry-title">「转载」我在工作中是如何使用 Git 的
-        </h3>
-        <div class="archive-meta"><span title='2022-03-14 19:32:18 +0800 CST'>March 14, 2022</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;1110 words&nbsp;·&nbsp;Jouzeyu</div>
-        <a class="entry-link" aria-label="post link to 「转载」我在工作中是如何使用 Git 的" href="https://jouzeyu.com/posts/work-with-git/"></a>
-      </div>
-      <div class="archive-entry">
-        <h3 class="archive-entry-title">hugo搭建个人博客
-        </h3>
-        <div class="archive-meta"><span title='2022-03-14 19:27:08 +0800 CST'>March 14, 2022</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;955 words&nbsp;·&nbsp;Jouzeyu</div>
-        <a class="entry-link" aria-label="post link to hugo搭建个人博客" href="https://jouzeyu.com/posts/build-blog-with-hugo/"></a>
-      </div>
-    </div>
-  </div>
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://jouzeyu.com/">Home</a>&nbsp;»&nbsp;<a href="https://jouzeyu.com/posts/">Posts</a></div>
+    <h1 class="post-title">
+      Mac os 使用brew工具时报错No remote ‘origin‘
+    </h1>
+    <div class="post-meta"><span title='2022-06-11 22:30:22 +0800 CST'>June 11, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;62 words&nbsp;·&nbsp;Jouzeyu
+
 </div>
+  </header> 
+
+  <div class="post-content"><p>今天早上使用brew 安装东西的时候，没有安装成功，于是我先更新了一下brew ,返回了以下信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Warning: No remote <span class="s1">&#39;origin&#39;</span> in /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core, skipping update!
+</span></span><span class="line"><span class="cl">Warning: No remote <span class="s1">&#39;origin&#39;</span> in /usr/local/Homebrew/Library/Taps/homebrew/homebrew-services, skipping update!
+</span></span><span class="line"><span class="cl">Warning: No remote <span class="s1">&#39;origin&#39;</span> in /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask, skipping update!
+</span></span><span class="line"><span class="cl">Already up-to-date.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>开始解决：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rm -rf <span class="s2">&#34;/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core&#34;</span>
+</span></span><span class="line"><span class="cl">brew tap homebrew/core
+</span></span><span class="line"><span class="cl">rm -rf <span class="s2">&#34;/usr/local/Homebrew/Library/Taps/homebrew/homebrew-services&#34;</span>
+</span></span><span class="line"><span class="cl">brew tap homebrew/services
+</span></span><span class="line"><span class="cl">rm -rf <span class="s2">&#34;/usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask&#34;</span>
+</span></span><span class="line"><span class="cl">brew tap homebrew/cask
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再次运行<code>brew update</code> ，显示成功！
+再次运行原来的安装命令，成功！</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://jouzeyu.com/tags/brew/">brew</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://jouzeyu.com/posts/life_20220610/">
+    <span class="title">Next »</span>
+    <br>
+    <span>你的焦虑是因为你还没有认命</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
     </main>
     
 <footer class="footer">
@@ -329,6 +337,53 @@
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
 </script>
 </body>
 
