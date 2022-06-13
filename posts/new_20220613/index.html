@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Mac os 使用brew工具时报错No remote ‘origin‘ | 羡鱼戏渊</title>
-<meta name="keywords" content="brew">
+<title>Laravel 9 中的新功能： Route::controller () | 羡鱼戏渊</title>
+<meta name="keywords" content="laravel">
 <meta name="description" content="不要让时代的悲哀，成为你的悲哀！">
 <meta name="author" content="Jouzeyu">
-<link rel="canonical" href="https://jouzeyu.com/posts/error_20220611/">
+<link rel="canonical" href="https://jouzeyu.com/posts/new_20220613/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.d7fb4cbf980fe688a21621b06a795933c4e6bb2d4070ec940667af1715d84af2.css" integrity="sha256-1/tMv5gP5oiiFiGwanlZM8Tmuy1AcOyUBmevFxXYSvI=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -56,17 +56,17 @@
         }
 
     </style>
-</noscript><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta property="og:title" content="Mac os 使用brew工具时报错No remote ‘origin‘" />
+</noscript><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta property="og:title" content="Laravel 9 中的新功能： Route::controller ()" />
 <meta property="og:description" content="不要让时代的悲哀，成为你的悲哀！" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://jouzeyu.com/posts/error_20220611/" /><meta property="og:image" content="https://jouzeyu.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-06-11T22:30:22&#43;08:00" />
-<meta property="article:modified_time" content="2022-06-11T22:30:22&#43;08:00" /><meta property="og:site_name" content="羡鱼戏渊" />
+<meta property="og:url" content="https://jouzeyu.com/posts/new_20220613/" /><meta property="og:image" content="https://jouzeyu.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-13T11:26:05&#43;08:00" />
+<meta property="article:modified_time" content="2022-06-13T11:26:05&#43;08:00" /><meta property="og:site_name" content="羡鱼戏渊" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://jouzeyu.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"/>
 
-<meta name="twitter:title" content="Mac os 使用brew工具时报错No remote ‘origin‘"/>
+<meta name="twitter:title" content="Laravel 9 中的新功能： Route::controller ()"/>
 <meta name="twitter:description" content="不要让时代的悲哀，成为你的悲哀！"/>
 
 
@@ -84,8 +84,8 @@
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "Mac os 使用brew工具时报错No remote ‘origin‘",
-      "item": "https://jouzeyu.com/posts/error_20220611/"
+      "name": "Laravel 9 中的新功能： Route::controller ()",
+      "item": "https://jouzeyu.com/posts/new_20220613/"
     }
   ]
 }
@@ -94,24 +94,24 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Mac os 使用brew工具时报错No remote ‘origin‘",
-  "name": "Mac os 使用brew工具时报错No remote ‘origin‘",
+  "headline": "Laravel 9 中的新功能： Route::controller ()",
+  "name": "Laravel 9 中的新功能： Route::controller ()",
   "description": "不要让时代的悲哀，成为你的悲哀！",
   "keywords": [
-    "brew"
+    "laravel"
   ],
-  "articleBody": "今天早上使用brew 安装东西的时候，没有安装成功，于是我先更新了一下brew ,返回了以下信息：\n1 2 3 4 Warning: No remote 'origin' in /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core, skipping update! Warning: No remote 'origin' in /usr/local/Homebrew/Library/Taps/homebrew/homebrew-services, skipping update! Warning: No remote 'origin' in /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask, skipping update! Already up-to-date. 开始解决：\n1 2 3 4 5 6 rm -rf \"/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core\" brew tap homebrew/core rm -rf \"/usr/local/Homebrew/Library/Taps/homebrew/homebrew-services\" brew tap homebrew/services rm -rf \"/usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask\" brew tap homebrew/cask 再次运行brew update ，显示成功！ 再次运行原来的安装命令，成功！\n",
-  "wordCount" : "62",
+  "articleBody": "laravel 9新增了很多新功能，下面要讲的这个功能就是其中之一。 如果你的 Controller 中有一些方法，但它们不遵循标准的 Resource 结构，您仍然可以对它们进行分组，而无需为每个方法重复 Controller 名称。 取而代之的是：\n1 2 3 Route::get('profile', [ProfileController::class, 'getProfile']); Route::put('profile', [ProfileController::class, 'updateProfile']); Route::delete('profile', [ProfileController::class, 'deleteProfile']); 您可以这样做：\n1 2 3 4 5 Route::controller(ProfileController::class)-\u003egroup(function() { Route::get('profile', 'getProfile'); Route::put('profile', 'updateProfile'); Route::delete('profile', 'deleteProfile'); }); 此功能在 Laravel 9 和 Laravel 8 的最新小版本中可用。\n",
+  "wordCount" : "44",
   "inLanguage": "en",
-  "datePublished": "2022-06-11T22:30:22+08:00",
-  "dateModified": "2022-06-11T22:30:22+08:00",
+  "datePublished": "2022-06-13T11:26:05+08:00",
+  "dateModified": "2022-06-13T11:26:05+08:00",
   "author":{
     "@type": "Person",
     "name": "Jouzeyu"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://jouzeyu.com/posts/error_20220611/"
+    "@id": "https://jouzeyu.com/posts/new_20220613/"
   },
   "publisher": {
     "@type": "Organization",
@@ -199,30 +199,30 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://jouzeyu.com/">Home</a>&nbsp;»&nbsp;<a href="https://jouzeyu.com/posts/">Posts</a></div>
     <h1 class="post-title">
-      Mac os 使用brew工具时报错No remote ‘origin‘
+      Laravel 9 中的新功能： Route::controller ()
     </h1>
-    <div class="post-meta"><span title='2022-06-11 22:30:22 +0800 CST'>June 11, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;62 words&nbsp;·&nbsp;Jouzeyu
+    <div class="post-meta"><span title='2022-06-13 11:26:05 +0800 CST'>June 13, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;44 words&nbsp;·&nbsp;Jouzeyu
 
 ·  <span id="busuanzi_value_page_pv"></span>&nbsp;count
     </div>
   </header> 
 
-  <div class="post-content"><p>今天早上使用brew 安装东西的时候，没有安装成功，于是我先更新了一下brew ,返回了以下信息：</p>
+  <div class="post-content"><p>laravel 9新增了很多新功能，下面要讲的这个功能就是其中之一。
+如果你的 Controller 中有一些方法，但它们不遵循标准的 Resource 结构，您仍然可以对它们进行分组，而无需为每个方法重复 Controller 名称。
+取而代之的是：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Warning: No remote <span class="s1">&#39;origin&#39;</span> in /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core, skipping update!
-</span></span><span class="line"><span class="cl">Warning: No remote <span class="s1">&#39;origin&#39;</span> in /usr/local/Homebrew/Library/Taps/homebrew/homebrew-services, skipping update!
-</span></span><span class="line"><span class="cl">Warning: No remote <span class="s1">&#39;origin&#39;</span> in /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask, skipping update!
-</span></span><span class="line"><span class="cl">Already up-to-date.
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">ProfileController</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;getProfile&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Route</span><span class="o">::</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">ProfileController</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;updateProfile&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Route</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">ProfileController</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;deleteProfile&#39;</span><span class="p">]);</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>开始解决：</p>
+</div><p>您可以这样做：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -230,37 +230,29 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rm -rf <span class="s2">&#34;/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core&#34;</span>
-</span></span><span class="line"><span class="cl">brew tap homebrew/core
-</span></span><span class="line"><span class="cl">rm -rf <span class="s2">&#34;/usr/local/Homebrew/Library/Taps/homebrew/homebrew-services&#34;</span>
-</span></span><span class="line"><span class="cl">brew tap homebrew/services
-</span></span><span class="line"><span class="cl">rm -rf <span class="s2">&#34;/usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask&#34;</span>
-</span></span><span class="line"><span class="cl">brew tap homebrew/cask
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">Route</span><span class="o">::</span><span class="na">controller</span><span class="p">(</span><span class="nx">ProfileController</span><span class="o">::</span><span class="na">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">,</span> <span class="s1">&#39;getProfile&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Route</span><span class="o">::</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">,</span> <span class="s1">&#39;updateProfile&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Route</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">,</span> <span class="s1">&#39;deleteProfile&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>再次运行<code>brew update</code> ，显示成功！
-再次运行原来的安装命令，成功！</p>
+</div><p>此功能在 Laravel 9 和 Laravel 8 的最新小版本中可用。</p>
 
 
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://jouzeyu.com/tags/brew/">brew</a></li>
+      <li><a href="https://jouzeyu.com/tags/laravel/">laravel</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://jouzeyu.com/posts/new_20220613/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>Laravel 9 中的新功能： Route::controller ()</span>
-  </a>
-  <a class="next" href="https://jouzeyu.com/posts/life_20220610/">
+  <a class="next" href="https://jouzeyu.com/posts/error_20220611/">
     <span class="title">Next »</span>
     <br>
-    <span>你的焦虑是因为你还没有认命</span>
+    <span>Mac os 使用brew工具时报错No remote ‘origin‘</span>
   </a>
 </nav>
 

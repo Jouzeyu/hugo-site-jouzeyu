@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://jouzeyu.com/categories/</loc>
+    <lastmod>2022-06-13T11:26:05+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/tags/laravel/</loc>
+    <lastmod>2022-06-13T11:26:05+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/posts/new_20220613/</loc>
+    <lastmod>2022-06-13T11:26:05+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/categories/new/</loc>
+    <lastmod>2022-06-13T11:26:05+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/posts/</loc>
+    <lastmod>2022-06-13T11:26:05+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/tags/</loc>
+    <lastmod>2022-06-13T11:26:05+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/</loc>
+    <lastmod>2022-06-13T11:26:05+08:00</lastmod>
+  </url><url>
     <loc>https://jouzeyu.com/about/</loc>
     <lastmod>2022-06-11T22:49:48+08:00</lastmod>
   </url><url>
@@ -11,19 +32,7 @@
     <loc>https://jouzeyu.com/categories/bug/</loc>
     <lastmod>2022-06-11T22:30:22+08:00</lastmod>
   </url><url>
-    <loc>https://jouzeyu.com/categories/</loc>
-    <lastmod>2022-06-11T22:30:22+08:00</lastmod>
-  </url><url>
     <loc>https://jouzeyu.com/posts/error_20220611/</loc>
-    <lastmod>2022-06-11T22:30:22+08:00</lastmod>
-  </url><url>
-    <loc>https://jouzeyu.com/posts/</loc>
-    <lastmod>2022-06-11T22:30:22+08:00</lastmod>
-  </url><url>
-    <loc>https://jouzeyu.com/tags/</loc>
-    <lastmod>2022-06-11T22:30:22+08:00</lastmod>
-  </url><url>
-    <loc>https://jouzeyu.com/</loc>
     <lastmod>2022-06-11T22:30:22+08:00</lastmod>
   </url><url>
     <loc>https://jouzeyu.com/posts/life_20220610/</loc>
@@ -34,9 +43,6 @@
   </url><url>
     <loc>https://jouzeyu.com/categories/%E7%94%9F%E6%B4%BB/</loc>
     <lastmod>2022-06-10T22:49:48+08:00</lastmod>
-  </url><url>
-    <loc>https://jouzeyu.com/tags/laravel/</loc>
-    <lastmod>2022-06-09T22:58:00+08:00</lastmod>
   </url><url>
     <loc>https://jouzeyu.com/tags/router/</loc>
     <lastmod>2022-06-09T22:58:00+08:00</lastmod>

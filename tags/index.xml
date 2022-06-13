@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>**[羡鱼戏渊](https://jouzeyu.com)**</copyright>
-    <lastBuildDate>Sat, 11 Jun 2022 22:30:22 +0800</lastBuildDate><atom:link href="https://jouzeyu.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Jun 2022 11:26:05 +0800</lastBuildDate><atom:link href="https://jouzeyu.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>laravel</title>
+      <link>https://jouzeyu.com/tags/laravel/</link>
+      <pubDate>Mon, 13 Jun 2022 11:26:05 +0800</pubDate>
+      
+      <guid>https://jouzeyu.com/tags/laravel/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>brew</title>
       <link>https://jouzeyu.com/tags/brew/</link>
@@ -26,15 +35,6 @@
       <pubDate>Fri, 10 Jun 2022 22:49:48 +0800</pubDate>
       
       <guid>https://jouzeyu.com/tags/%E7%84%A6%E8%99%91/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>laravel</title>
-      <link>https://jouzeyu.com/tags/laravel/</link>
-      <pubDate>Thu, 09 Jun 2022 22:58:00 +0800</pubDate>
-      
-      <guid>https://jouzeyu.com/tags/laravel/</guid>
       <description></description>
     </item>
     
