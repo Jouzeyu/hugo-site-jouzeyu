@@ -10,16 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>**[羡鱼戏渊](https://jouzeyu.com)**</copyright>
-    <lastBuildDate>Tue, 28 Jun 2022 10:45:23 +0800</lastBuildDate><atom:link href="https://jouzeyu.com/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Note_20220628</title>
-      <link>https://jouzeyu.com/posts/note_20220628/</link>
-      <pubDate>Tue, 28 Jun 2022 10:45:23 +0800</pubDate>
-      
-      <guid>https://jouzeyu.com/posts/note_20220628/</guid>
-      <description>人的大脑倾向于更容易获得的答案，而非更正确的答案。</description>
-    </item>
-    
+    <lastBuildDate>Mon, 13 Jun 2022 11:26:05 +0800</lastBuildDate><atom:link href="https://jouzeyu.com/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Laravel 9 中的新功能： Route::controller ()</title>
       <link>https://jouzeyu.com/posts/new_20220613/</link>

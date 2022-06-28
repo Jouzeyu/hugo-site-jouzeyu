@@ -5,7 +5,7 @@
     <loc>https://jouzeyu.com/categories/</loc>
     <lastmod>2022-06-28T10:45:23+08:00</lastmod>
   </url><url>
-    <loc>https://jouzeyu.com/tags/laravel/</loc>
+    <loc>https://jouzeyu.com/tags/mysql/</loc>
     <lastmod>2022-06-28T10:45:23+08:00</lastmod>
   </url><url>
     <loc>https://jouzeyu.com/posts/note_20220628/</loc>
@@ -31,6 +31,9 @@
   </url><url>
     <loc>https://jouzeyu.com/categories/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2022-06-14T09:25:48+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/tags/laravel/</loc>
+    <lastmod>2022-06-13T11:26:05+08:00</lastmod>
   </url><url>
     <loc>https://jouzeyu.com/posts/new_20220613/</loc>
     <lastmod>2022-06-13T11:26:05+08:00</lastmod>
@@ -70,9 +73,6 @@
   </url><url>
     <loc>https://jouzeyu.com/categories/note/</loc>
     <lastmod>2022-03-29T19:41:21+08:00</lastmod>
-  </url><url>
-    <loc>https://jouzeyu.com/tags/mysql/</loc>
-    <lastmod>2022-03-20T19:38:32+08:00</lastmod>
   </url><url>
     <loc>https://jouzeyu.com/posts/mysql-study-notes/</loc>
     <lastmod>2022-03-20T19:38:32+08:00</lastmod>
