@@ -3,24 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://jouzeyu.com/categories/</loc>
-    <lastmod>2022-06-28T10:45:23+08:00</lastmod>
+    <lastmod>2022-07-18T10:45:23+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/posts/</loc>
+    <lastmod>2022-07-18T10:45:23+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/tags/</loc>
+    <lastmod>2022-07-18T10:45:23+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/tags/%E5%9C%B0%E5%9B%BE%E5%9D%90%E6%A0%87/</loc>
+    <lastmod>2022-07-18T10:45:23+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/categories/%E7%BC%96%E7%A0%81/</loc>
+    <lastmod>2022-07-18T10:45:23+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/</loc>
+    <lastmod>2022-07-18T10:45:23+08:00</lastmod>
+  </url><url>
+    <loc>https://jouzeyu.com/posts/note_202200718/</loc>
+    <lastmod>2022-07-18T10:45:23+08:00</lastmod>
   </url><url>
     <loc>https://jouzeyu.com/tags/mysql/</loc>
     <lastmod>2022-06-28T10:45:23+08:00</lastmod>
   </url><url>
     <loc>https://jouzeyu.com/posts/note_20220628/</loc>
-    <lastmod>2022-06-28T10:45:23+08:00</lastmod>
-  </url><url>
-    <loc>https://jouzeyu.com/posts/</loc>
-    <lastmod>2022-06-28T10:45:23+08:00</lastmod>
-  </url><url>
-    <loc>https://jouzeyu.com/tags/</loc>
-    <lastmod>2022-06-28T10:45:23+08:00</lastmod>
-  </url><url>
-    <loc>https://jouzeyu.com/categories/%E7%BC%96%E7%A0%81/</loc>
-    <lastmod>2022-06-28T10:45:23+08:00</lastmod>
-  </url><url>
-    <loc>https://jouzeyu.com/</loc>
     <lastmod>2022-06-28T10:45:23+08:00</lastmod>
   </url><url>
     <loc>https://jouzeyu.com/tags/git/</loc>

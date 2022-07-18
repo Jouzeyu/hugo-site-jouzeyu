@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>**[羡鱼戏渊](https://jouzeyu.com)**</copyright>
-    <lastBuildDate>Tue, 28 Jun 2022 10:45:23 +0800</lastBuildDate><atom:link href="https://jouzeyu.com/categories/%E7%BC%96%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Jul 2022 10:45:23 +0800</lastBuildDate><atom:link href="https://jouzeyu.com/categories/%E7%BC%96%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>高德地图转天地图</title>
+      <link>https://jouzeyu.com/posts/note_202200718/</link>
+      <pubDate>Mon, 18 Jul 2022 10:45:23 +0800</pubDate>
+      
+      <guid>https://jouzeyu.com/posts/note_202200718/</guid>
+      <description>人的大脑倾向于更容易获得的答案，而非更正确的答案。</description>
+    </item>
+    
     <item>
       <title>mysql 排序错乱问题</title>
       <link>https://jouzeyu.com/posts/note_20220628/</link>
