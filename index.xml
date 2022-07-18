@@ -13,37 +13,37 @@
     <lastBuildDate>Mon, 18 Jul 2022 10:45:23 +0800</lastBuildDate><atom:link href="https://jouzeyu.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>高德地图转天地图</title>
-      <link>https://jouzeyu.com/posts/note_202200718/</link>
+      <link>https://jouzeyu.com/posts/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E8%BD%AC%E5%A4%A9%E5%9C%B0%E5%9B%BE/</link>
       <pubDate>Mon, 18 Jul 2022 10:45:23 +0800</pubDate>
       
-      <guid>https://jouzeyu.com/posts/note_202200718/</guid>
+      <guid>https://jouzeyu.com/posts/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E8%BD%AC%E5%A4%A9%E5%9C%B0%E5%9B%BE/</guid>
       <description>人的大脑倾向于更容易获得的答案，而非更正确的答案。</description>
     </item>
     
     <item>
       <title>mysql 排序错乱问题</title>
-      <link>https://jouzeyu.com/posts/note_20220628/</link>
+      <link>https://jouzeyu.com/posts/mysql-%E6%8E%92%E5%BA%8F%E9%94%99%E4%B9%B1%E9%97%AE%E9%A2%98/</link>
       <pubDate>Tue, 28 Jun 2022 10:45:23 +0800</pubDate>
       
-      <guid>https://jouzeyu.com/posts/note_20220628/</guid>
+      <guid>https://jouzeyu.com/posts/mysql-%E6%8E%92%E5%BA%8F%E9%94%99%E4%B9%B1%E9%97%AE%E9%A2%98/</guid>
       <description>人的大脑倾向于更容易获得的答案，而非更正确的答案。</description>
     </item>
     
     <item>
       <title>Git 基本使用</title>
-      <link>https://jouzeyu.com/posts/note_20220614/</link>
+      <link>https://jouzeyu.com/posts/git-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Tue, 14 Jun 2022 09:25:48 +0800</pubDate>
       
-      <guid>https://jouzeyu.com/posts/note_20220614/</guid>
+      <guid>https://jouzeyu.com/posts/git-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
       <description>不要让时代的悲哀，成为你的悲哀！</description>
     </item>
     
     <item>
       <title>Laravel 9 中的新功能： Route::controller ()</title>
-      <link>https://jouzeyu.com/posts/new_20220613/</link>
+      <link>https://jouzeyu.com/posts/laravel-9-%E4%B8%AD%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD-routecontroller-/</link>
       <pubDate>Mon, 13 Jun 2022 11:26:05 +0800</pubDate>
       
-      <guid>https://jouzeyu.com/posts/new_20220613/</guid>
+      <guid>https://jouzeyu.com/posts/laravel-9-%E4%B8%AD%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD-routecontroller-/</guid>
       <description>不要让时代的悲哀，成为你的悲哀！</description>
     </item>
     
@@ -58,73 +58,73 @@
     
     <item>
       <title>Mac os 使用brew工具时报错No remote ‘origin‘</title>
-      <link>https://jouzeyu.com/posts/error_20220611/</link>
+      <link>https://jouzeyu.com/posts/mac-os-%E4%BD%BF%E7%94%A8brew%E5%B7%A5%E5%85%B7%E6%97%B6%E6%8A%A5%E9%94%99no-remote-origin/</link>
       <pubDate>Sat, 11 Jun 2022 22:30:22 +0800</pubDate>
       
-      <guid>https://jouzeyu.com/posts/error_20220611/</guid>
+      <guid>https://jouzeyu.com/posts/mac-os-%E4%BD%BF%E7%94%A8brew%E5%B7%A5%E5%85%B7%E6%97%B6%E6%8A%A5%E9%94%99no-remote-origin/</guid>
       <description>不要让时代的悲哀，成为你的悲哀！</description>
     </item>
     
     <item>
       <title>你的焦虑是因为你还没有认命</title>
-      <link>https://jouzeyu.com/posts/life_20220610/</link>
+      <link>https://jouzeyu.com/posts/%E4%BD%A0%E7%9A%84%E7%84%A6%E8%99%91%E6%98%AF%E5%9B%A0%E4%B8%BA%E4%BD%A0%E8%BF%98%E6%B2%A1%E6%9C%89%E8%AE%A4%E5%91%BD/</link>
       <pubDate>Fri, 10 Jun 2022 22:49:48 +0800</pubDate>
       
-      <guid>https://jouzeyu.com/posts/life_20220610/</guid>
+      <guid>https://jouzeyu.com/posts/%E4%BD%A0%E7%9A%84%E7%84%A6%E8%99%91%E6%98%AF%E5%9B%A0%E4%B8%BA%E4%BD%A0%E8%BF%98%E6%B2%A1%E6%9C%89%E8%AE%A4%E5%91%BD/</guid>
       <description>你所浪费的今天是昨天死去的人奢望的明天，你所厌恶的现在，是末来的你回不到的曾经</description>
     </item>
     
     <item>
       <title>通过命名空间区分路由文件</title>
-      <link>https://jouzeyu.com/posts/distinguish-routing-files-by-namespace/</link>
+      <link>https://jouzeyu.com/posts/%E9%80%9A%E8%BF%87%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%8C%BA%E5%88%86%E8%B7%AF%E7%94%B1%E6%96%87%E4%BB%B6/</link>
       <pubDate>Thu, 09 Jun 2022 22:58:00 +0800</pubDate>
       
-      <guid>https://jouzeyu.com/posts/distinguish-routing-files-by-namespace/</guid>
+      <guid>https://jouzeyu.com/posts/%E9%80%9A%E8%BF%87%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%8C%BA%E5%88%86%E8%B7%AF%E7%94%B1%E6%96%87%E4%BB%B6/</guid>
       <description>不要让时代的悲哀，成为你的悲哀！</description>
     </item>
     
     <item>
       <title>Laravel解析-入口文件</title>
-      <link>https://jouzeyu.com/posts/laravel-parsing-entry-file/</link>
+      <link>https://jouzeyu.com/posts/laravel%E8%A7%A3%E6%9E%90-%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6/</link>
       <pubDate>Tue, 29 Mar 2022 19:41:21 +0800</pubDate>
       
-      <guid>https://jouzeyu.com/posts/laravel-parsing-entry-file/</guid>
+      <guid>https://jouzeyu.com/posts/laravel%E8%A7%A3%E6%9E%90-%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6/</guid>
       <description>所谓成长，不一定得到了什么，但肯定失去了什么……</description>
     </item>
     
     <item>
       <title>Mysql 学习笔记</title>
-      <link>https://jouzeyu.com/posts/mysql-study-notes/</link>
+      <link>https://jouzeyu.com/posts/mysql-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Sun, 20 Mar 2022 19:38:32 +0800</pubDate>
       
-      <guid>https://jouzeyu.com/posts/mysql-study-notes/</guid>
+      <guid>https://jouzeyu.com/posts/mysql-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
       <description>手上没有剑，和有剑不用，是两码事</description>
     </item>
     
     <item>
       <title>PHP与面向对象编程浅谈</title>
-      <link>https://jouzeyu.com/posts/php-and-object-oriented-programming/</link>
+      <link>https://jouzeyu.com/posts/php%E4%B8%8E%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E6%B5%85%E8%B0%88/</link>
       <pubDate>Sun, 20 Mar 2022 19:35:57 +0800</pubDate>
       
-      <guid>https://jouzeyu.com/posts/php-and-object-oriented-programming/</guid>
+      <guid>https://jouzeyu.com/posts/php%E4%B8%8E%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E6%B5%85%E8%B0%88/</guid>
       <description>我不追逐影子，影子自然随我～</description>
     </item>
     
     <item>
       <title>「转载」我在工作中是如何使用 Git 的</title>
-      <link>https://jouzeyu.com/posts/work-with-git/</link>
+      <link>https://jouzeyu.com/posts/%E8%BD%AC%E8%BD%BD%E6%88%91%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-git-%E7%9A%84/</link>
       <pubDate>Mon, 14 Mar 2022 19:32:18 +0800</pubDate>
       
-      <guid>https://jouzeyu.com/posts/work-with-git/</guid>
+      <guid>https://jouzeyu.com/posts/%E8%BD%AC%E8%BD%BD%E6%88%91%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-git-%E7%9A%84/</guid>
       <description>不要让时代的悲哀，成为你的悲哀！</description>
     </item>
     
     <item>
       <title>hugo搭建个人博客</title>
-      <link>https://jouzeyu.com/posts/build-blog-with-hugo/</link>
+      <link>https://jouzeyu.com/posts/hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Mon, 14 Mar 2022 19:27:08 +0800</pubDate>
       
-      <guid>https://jouzeyu.com/posts/build-blog-with-hugo/</guid>
+      <guid>https://jouzeyu.com/posts/hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
       <description>风是自由的，希望你也是～</description>
     </item>
     
